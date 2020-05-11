@@ -8,36 +8,5 @@
     "h h"
     "n c";
     width: 1200px;
-}
-
-.header {
-    grid-area: h;
-    background-color: rgba(17, 43, 122, 0.69);
-}
-
-.main-header {
-    height: 200px;
-}
-
-.main-header_pict {
-    width: 100%;
-    height: 100%;
-}
-
-.logo {
-    width: 100px;
-}
-
-.nav {
-    grid-area: n;
-    background-color: #aef8ff;
-}
-
-.content {
-    grid-area: c;
-    background-color: #dabfff;
-}
-
-ul li {
-    list-style-type: georgian;
+    font-family: Arial, sans-serif;
 }
