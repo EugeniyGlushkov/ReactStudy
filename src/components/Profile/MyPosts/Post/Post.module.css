@@ -1,0 +1,8 @@
+.item {
+    color: #208b00;
+}
+
+.item .logo {
+    width: 50px;
+    border-radius: 25px;
+}
