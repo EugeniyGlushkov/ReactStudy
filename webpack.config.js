@@ -5,7 +5,8 @@ module.exports = {
     devServer: {
         inline: true,
         contentBase: './build',
-        port: 3000
+        port: 3000,
+        historyApiFallback: true
     },
     devtool: 'source-map',
     entry: './src/index.js',
