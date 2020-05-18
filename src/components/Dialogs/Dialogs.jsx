@@ -8,22 +8,22 @@ const Dialogs = (props) => {
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 <div className={s.dialog}>
-                    <NavLink to={'/'} activeClassName={s.activeLink}>Dimych</NavLink>
+                    <NavLink to={'/dialogs/1'} activeClassName={s.activeLink}>Dimych</NavLink>
                 </div>
                 <div className={s.dialog}>
-                    <NavLink to={'/'}>Andrey</NavLink>
+                    <NavLink to={'/dialogs/2'}>Andrey</NavLink>
                 </div>
                 <div className={s.dialog}>
-                    <NavLink to={'/'}>Sveta</NavLink>
+                    <NavLink to={'/dialogs/3'}>Sveta</NavLink>
                 </div>
                 <div className={s.dialog}>
-                    <NavLink to={'/'}>Sasha</NavLink>
+                    <NavLink to={'/dialogs/4'}>Sasha</NavLink>
                 </div>
                 <div className={s.dialog}>
-                    <NavLink to={'/'}>Viktor</NavLink>
+                    <NavLink to={'/dialogs/5'}>Viktor</NavLink>
                 </div>
                 <div className={s.dialog}>
-                    <NavLink to={'/'}>Valera</NavLink>
+                    <NavLink to={'/dialogs/6'}>Valera</NavLink>
                 </div>
             </div>
             <div className={s.messages}>
