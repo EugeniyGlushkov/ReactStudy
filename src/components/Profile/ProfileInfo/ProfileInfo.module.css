@@ -1,0 +1,12 @@
+.main_header {
+    height: 200px;
+}
+
+.main_header__pict {
+    width: 100%;
+    height: 100%;
+}
+
+.descriptionBlock {
+    padding: 10px;
+}
