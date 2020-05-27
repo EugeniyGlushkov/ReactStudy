@@ -16,7 +16,7 @@
 }
 
 .messages .message {
-
+    margin: 5px;
 }
 
 .dialog .activeLink {
@@ -26,4 +26,18 @@ color: #FFD700;
 .dialog a {
     color: #FFFFFF;
     text-decoration: none;
+}
+
+.message_container {
+    display: flex;
+    align-items: center;
+    padding: 5px 0 5px;
+}
+
+.your_message {
+    justify-content: flex-end;
+}
+
+.friends_message {
+    justify-content: flex-start;
 }
