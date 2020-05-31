@@ -41,3 +41,13 @@ color: #FFD700;
 .friends_message {
     justify-content: flex-start;
 }
+
+.newMessageContainer {
+    display: flex;
+    align-items: flex-end;
+}
+
+.newMessageContainer textarea {
+    width: 75%;
+    margin-right: 2px;
+}
