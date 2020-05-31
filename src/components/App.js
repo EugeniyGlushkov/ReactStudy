@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import '../styles/App.css';
 import Header from "./Header/Header";
 import Navbar from "./Navbar/Navbar";
@@ -11,7 +11,6 @@ import Settings from "./Settings/Settings";
 
 const App = (props) => {
     return (
-        <BrowserRouter>
             <div className={'app-wrapper'}>
                 <Header/>
                 <Navbar state={props.state.navbar}/>
@@ -26,7 +25,6 @@ const App = (props) => {
                     <Route path={'/Settings'} component={Settings}/>
                 </div>
             </div>
-        </BrowserRouter>
     );
 };
 
