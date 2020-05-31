@@ -38,7 +38,7 @@ let state = {
             {
                 id: 6,
                 name: 'Valera',
-                avatarUrl: 'https://1ats.ru/netcat_files/327/324/man.png'
+                avatarUrl: 'https://sun9-53.userapi.com/a2_T4m9sl6j4cDNGh15RxHzNtD5EycdboQBz-Q/8TWkikReziE.jpg'
             }
         ],
         messages: [
