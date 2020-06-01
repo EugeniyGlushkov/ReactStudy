@@ -8,7 +8,7 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
     let onAddPost = () => {
         let newPostText = newPostElement.current.value;
-        alert(newPostText);
+        props.addPost(newPostText);
     };
     let onRemovePost = () => alert('Remove post!!!');
 
