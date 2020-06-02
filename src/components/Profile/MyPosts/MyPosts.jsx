@@ -12,13 +12,17 @@ const MyPosts = (props) => {
         newPostElement.current.value = '';
     };
     let onRemovePost = () => alert('Remove post!!!');
+    let onChangeNewPostText = () => {
+        let newPostText = newPostElement.current.value;
+        props.changeNewPostText(newPostText);
+    };
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onChangeNewPostText} ref={newPostElement}>{props.newPostText}</textarea>
                 </div>
                 <button onClick={onAddPost}>Add post</button>
                 <button onClick={onRemovePost}>Remove</button>
