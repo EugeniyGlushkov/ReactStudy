@@ -98,18 +98,19 @@ let state = {
     },
 };
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let newPostId = state.profilePage.posts.length + 1;
     let newPost = {
         id: newPostId,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likeCount: 0,
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
     renderEntireTree(state);
 };
 
-export let changeNewPostText = (newPostText) => {
+export let updateNewPostText = (newPostText) => {
     state.profilePage.newPostText = newPostText;
     renderEntireTree(state);
 };

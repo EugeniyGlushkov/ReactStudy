@@ -7,14 +7,12 @@ const MyPosts = (props) => {
         .map(post => <Post id={post.id} message={post.message} likeCounts={post.likeCount}/>);
     let newPostElement = React.createRef();
     let onAddPost = () => {
-        let newPostText = newPostElement.current.value;
-        props.addPost(newPostText);
-        newPostElement.current.value = '';
+        props.addPost();
     };
     let onRemovePost = () => alert('Remove post!!!');
     let onChangeNewPostText = () => {
         let newPostText = newPostElement.current.value;
-        props.changeNewPostText(newPostText);
+        props.updateNewPostText(newPostText);
     };
 
     return (
@@ -22,7 +20,7 @@ const MyPosts = (props) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onChangeNewPostText} ref={newPostElement}>{props.newPostText}</textarea>
+                    <textarea onChange={onChangeNewPostText} value={props.newPostText} ref={newPostElement}/>
                 </div>
                 <button onClick={onAddPost}>Add post</button>
                 <button onClick={onRemovePost}>Remove</button>
