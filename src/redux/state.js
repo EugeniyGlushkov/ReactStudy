@@ -76,6 +76,7 @@ let state = {
                 isYours: true,
             }
         ],
+        newMessageText:'',
     },
     navbar: {
         friends_bar: [
@@ -112,6 +113,24 @@ export let addPost = () => {
 
 export let updateNewPostText = (newPostText) => {
     state.profilePage.newPostText = newPostText;
+    renderEntireTree(state);
+};
+
+export let addMessage = () => {
+    let newMessageId = state.messagesPage.messages.length + 1;
+    let newMessage = {
+        id: newMessageId,
+        message: state.messagesPage.newMessageText,
+        avatarUrl: 'https://corp.exkavator.ru/native/src/o-man.png',
+        isYours: true,
+    };
+    state.messagesPage.messages.push(newMessage);
+    state.messagesPage.newMessageText = '';
+    renderEntireTree(state);
+};
+
+export let updateNewMessageText = (newMessageText) => {
+    state.messagesPage.newMessageText = newMessageText;
     renderEntireTree(state);
 };
 
