@@ -1,4 +1,6 @@
-import {renderEntireTree} from '../render';
+let rerenderEntireTree = () => {
+    alert('State was changed!')
+};
 
 let state = {
     profilePage: {
@@ -99,7 +101,9 @@ let state = {
     },
 };
 
-export let addPost = () => {
+window.state = state;
+
+export const addPost = () => {
     let newPostId = state.profilePage.posts.length + 1;
     let newPost = {
         id: newPostId,
@@ -108,15 +112,15 @@ export let addPost = () => {
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    renderEntireTree(state);
+    rerenderEntireTree(state);
 };
 
-export let updateNewPostText = (newPostText) => {
+export const updateNewPostText = (newPostText) => {
     state.profilePage.newPostText = newPostText;
-    renderEntireTree(state);
+    rerenderEntireTree(state);
 };
 
-export let addMessage = () => {
+export const addMessage = () => {
     let newMessageId = state.messagesPage.messages.length + 1;
     let newMessage = {
         id: newMessageId,
@@ -126,12 +130,16 @@ export let addMessage = () => {
     };
     state.messagesPage.messages.push(newMessage);
     state.messagesPage.newMessageText = '';
-    renderEntireTree(state);
+    rerenderEntireTree(state);
 };
 
-export let updateNewMessageText = (newMessageText) => {
+export const updateNewMessageText = (newMessageText) => {
     state.messagesPage.newMessageText = newMessageText;
-    renderEntireTree(state);
+    rerenderEntireTree(state);
+};
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
 };
 
 export default state;
