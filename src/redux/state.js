@@ -75,7 +75,7 @@ let store = {
                     isYours: true,
                 }
             ],
-            newMessageText:'',
+            newMessageText: '',
         },
         navbar: {
             friends_bar: [
@@ -108,37 +108,36 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    addPost() {
-        let newPostId = this._state.profilePage.posts.length + 1;
-        let newPost = {
-            id: newPostId,
-            message: this._state.profilePage.newPostText,
-            likeCount: 0,
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber();
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPostId = this._state.profilePage.posts.length + 1;
+            let newPost = {
+                id: newPostId,
+                message: this._state.profilePage.newPostText,
+                likeCount: 0,
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newPostText;
+            this._callSubscriber();
+        } else if (action.type === 'ADD-MESSAGE') {
+            let newMessageId = this._state.messagesPage.messages.length + 1;
+            let newMessage = {
+                id: newMessageId,
+                message: this._state.messagesPage.newMessageText,
+                avatarUrl: 'https://corp.exkavator.ru/native/src/o-man.png',
+                isYours: true,
+            };
+            this._state.messagesPage.messages.push(newMessage);
+            this._state.messagesPage.newMessageText = '';
+            this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.messagesPage.newMessageText = newMessageText;
+            this._callSubscriber();
+        }
     },
-    updateNewPostText(newPostText) {
-        this._state.profilePage.newPostText = newPostText;
-        this._callSubscriber();
-    },
-    addMessage() {
-        let newMessageId = this._state.messagesPage.messages.length + 1;
-        let newMessage = {
-            id: newMessageId,
-            message: this._state.messagesPage.newMessageText,
-            avatarUrl: 'https://corp.exkavator.ru/native/src/o-man.png',
-            isYours: true,
-        };
-        this._state.messagesPage.messages.push(newMessage);
-        this._state.messagesPage.newMessageText = '';
-        this._callSubscriber();
-    },
-    updateNewMessageText(newMessageText) {
-        this._state.messagesPage.newMessageText = newMessageText;
-        this._callSubscriber();
-    }
 };
 
 window.store = store;
