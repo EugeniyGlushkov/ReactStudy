@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let store = {
     _state: {
@@ -125,7 +127,7 @@ let store = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newPostText;
             this._callSubscriber();
-        } else if (action.type === 'ADD-MESSAGE') {
+        } else if (action.type === ADD_MESSAGE) {
             let newMessageId = this._state.messagesPage.messages.length + 1;
             let newMessage = {
                 id: newMessageId,
@@ -136,8 +138,8 @@ let store = {
             this._state.messagesPage.messages.push(newMessage);
             this._state.messagesPage.newMessageText = '';
             this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.messagesPage.newMessageText = newMessageText;
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.messagesPage.newMessageText = action.newMessageText;
             this._callSubscriber();
         }
     },
@@ -147,6 +149,11 @@ export const addPostActionCreator = () => ({type: ADD_POST});
 
 export const updateNewPostTextActionCreator = (newPostText) =>
     ({type: UPDATE_NEW_POST_TEXT, newPostText: newPostText,});
+
+export const addNewMessageActionCreator = () => ({type: ADD_MESSAGE});
+
+export const updateNewMessageTextActionCreator = (newMessageText) =>
+    ({type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: newMessageText,});
 
 window.store = store;
 
