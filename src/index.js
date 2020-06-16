@@ -4,15 +4,15 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./components/App";
 
-export const rerenderEntireTree = () => {
+export const rerenderEntireTree = (state) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
+            <App state={state} dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>,
         document.querySelector('#root')
     );
 };
 
-rerenderEntireTree();
+rerenderEntireTree(store.getState());
 
 store.subscribe(rerenderEntireTree);

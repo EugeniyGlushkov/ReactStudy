@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+import profileReducer from "./profile-reducer";
+import messagesReducer from "./messages-reducer";
+import navbarReducer from "./navbar-reducer";
 
 let store = {
     _state: {
@@ -102,7 +101,7 @@ let store = {
             ],
         },
     },
-    _callSubscriber() {
+    _callSubscriber(state) {
         console.log('There are no subscribers.')
     },
 
@@ -114,46 +113,13 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPostId = this._state.profilePage.posts.length + 1;
-            let newPost = {
-                id: newPostId,
-                message: this._state.profilePage.newPostText,
-                likeCount: 0,
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber();
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newPostText;
-            this._callSubscriber();
-        } else if (action.type === ADD_MESSAGE) {
-            let newMessageId = this._state.messagesPage.messages.length + 1;
-            let newMessage = {
-                id: newMessageId,
-                message: this._state.messagesPage.newMessageText,
-                avatarUrl: 'https://corp.exkavator.ru/native/src/o-man.png',
-                isYours: true,
-            };
-            this._state.messagesPage.messages.push(newMessage);
-            this._state.messagesPage.newMessageText = '';
-            this._callSubscriber();
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.messagesPage.newMessageText = action.newMessageText;
-            this._callSubscriber();
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._state.navbar = navbarReducer(this._state.navbar, action);
+
+        this._callSubscriber(this._state);
     },
 };
-
-export const addPostActionCreator = () => ({type: ADD_POST});
-
-export const updateNewPostTextActionCreator = (newPostText) =>
-    ({type: UPDATE_NEW_POST_TEXT, newPostText: newPostText,});
-
-export const addNewMessageActionCreator = () => ({type: ADD_MESSAGE});
-
-export const updateNewMessageTextActionCreator = (newMessageText) =>
-    ({type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: newMessageText,});
 
 window.store = store;
 
