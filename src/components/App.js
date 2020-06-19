@@ -4,10 +4,10 @@ import '../styles/App.css';
 import Header from "./Header/Header";
 import Navbar from "./Navbar/Navbar";
 import Profile from "./Profile/Profile";
-import Dialogs from "./Dialogs/Dialogs";
 import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
+import DialogsContainer from "./Dialogs/DialogsContainer";
 
 const App = (props) => {
     return (
@@ -16,10 +16,10 @@ const App = (props) => {
             <Navbar state={props.state.navbar}/>
             <div className={'app-wrapper-content'}>
                 <Route path={'/profile'}
-                       render={() => <Profile state={props.state.profilePage} dispatch={props.dispatch}/>}
+                       render={() => <Profile store={props.store}/>}
                 />
                 <Route path={'/dialogs'}
-                       render={() => <Dialogs state={props.state.messagesPage} dispatch={props.dispatch}/>}
+                       render={() => <DialogsContainer store={props.store}/>}
                 />
                 <Route path={'/news'} component={News}/>
                 <Route path={'/music'} component={Music}/>

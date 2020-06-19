@@ -1,3 +1,5 @@
+// TODO: delete
+
 import profileReducer from "./profile-reducer";
 import messagesReducer from "./messages-reducer";
 import navbarReducer from "./navbar-reducer";
