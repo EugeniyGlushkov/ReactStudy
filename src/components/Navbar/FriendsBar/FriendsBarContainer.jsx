@@ -1,20 +1,13 @@
 import React from 'react';
 import FriendsBar from "./FriendsBar";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
-const FriendsBarContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    let state = store.getState();
-                    return (
-                        <FriendsBar state={state.navbar}/>
-                    );
-                }
-            }
-        </StoreContext.Consumer>
-    );
+let mapStateToProps = (state) => {
+    return {
+        navbar: state.navbar
+    };
 };
+
+const FriendsBarContainer = connect(mapStateToProps)(FriendsBar);
 
 export default FriendsBarContainer;
