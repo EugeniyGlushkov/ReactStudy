@@ -19,7 +19,8 @@ let initialState = {
 };
 
 const navbarReducer = (state = initialState, action) => {
-    return state;
+    let stateCopy = {...state};
+    return stateCopy;
 };
 
 export default navbarReducer;

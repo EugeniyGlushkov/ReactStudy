@@ -70,6 +70,8 @@ let initialState = {
 };
 
 const messagesReducer = (state = initialState, action) => {
+    let stateCopy = {...state};
+
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessageId = state.messages.length + 1;
@@ -79,14 +81,15 @@ const messagesReducer = (state = initialState, action) => {
                 avatarUrl: 'https://corp.exkavator.ru/native/src/o-man.png',
                 isYours: true,
             };
-            state.messages.push(newMessage);
-            state.newMessageText = '';
-            return state;
+            stateCopy.messages = [...stateCopy.messages];
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = '';
+            return stateCopy;
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageText;
-            return state;
+            stateCopy.newMessageText = action.newMessageText;
+            return stateCopy;
         default:
-            return state;
+            return stateCopy;
     }
 };
 
