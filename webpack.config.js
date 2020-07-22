@@ -32,6 +32,10 @@ module.exports = {
                         presets: [
                             '@babel/preset-env',
                             '@babel/preset-react'
+                        ],
+                        //https://stackoverflow.com/questions/52237855/support-for-the-experimental-syntax-classproperties-isnt-currently-enabled
+                        plugins: [
+                            '@babel/plugin-proposal-class-properties'
                         ]
                     }
                 }
