@@ -11,7 +11,7 @@ const Dialogs = (props) => {
         .map(message => <Message id={message.id} key={message.id} message={message.message} avatarUrl={message.avatarUrl}
                                  isYours={message.isYours}/>);
     let onSendMessageClick = () => {
-        props.sendMessage();
+        props.addNewMessage();
     };
     let onNewMessageTextChange = (event) => {
         let newMessageText = event.target.value;
