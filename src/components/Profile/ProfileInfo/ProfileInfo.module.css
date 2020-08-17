@@ -8,5 +8,21 @@
 }
 
 .descriptionBlock {
+    display: flex;
     padding: 10px;
+}
+
+.avatar {
+    max-width: 20%;
+    max-height: 100%;
+
+}
+
+.info {
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.info li {
+    list-style-type: none;
 }
