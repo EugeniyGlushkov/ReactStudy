@@ -34,23 +34,33 @@ const Users = (props) => {
                                 </div>
                                 <div>
                                     {user.followed === true
-                                        ? <button onClick={() => {
-                                            followAPI.unfollow(user.id)
-                                                .then(isSuccessful => {
-                                                    if (isSuccessful) {
-                                                        props.unfollow(user.id);
-                                                    }
-                                                });
-                                            }}>Unfollow</button>
-                                        : <button onClick={() => {
-                                            followAPI.follow(user.id)
-                                                .then(isSuccessful => {
-                                                    if (isSuccessful) {
-                                                        props.follow(user.id);
-                                                    }
-                                                });
+                                        ? <button
+                                            disabled={props.isFollowingInProgress.some(userId => userId === user.id)}
+                                            onClick={() => {
+                                                props.toggleIsFollowingInProgress(true, user.id);
+                                                followAPI.unfollow(user.id)
+                                                    .then(isSuccessful => {
+                                                        if (isSuccessful) {
+                                                            props.unfollow( user.id);
+                                                        }
 
-                                        }}>Follow</button>}
+                                                        props.toggleIsFollowingInProgress(false,user.id);
+                                                    });
+                                            }}>Unfollow</button>
+                                        : <button
+                                            disabled={props.isFollowingInProgress.some(userId => userId === user.id)}
+                                            onClick={() => {
+                                                props.toggleIsFollowingInProgress(true, user.id);
+                                                followAPI.follow(user.id)
+                                                    .then(isSuccessful => {
+                                                        if (isSuccessful) {
+                                                            props.follow(user.id);
+                                                        }
+
+                                                        props.toggleIsFollowingInProgress(false, user.id);
+                                                    });
+
+                                            }}>Follow</button>}
                                 </div>
                             </span>
                             <span>
