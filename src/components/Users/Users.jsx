@@ -2,7 +2,6 @@ import React from 'react';
 import styles from "./users.module.css";
 import userPhoto_default from "../../assets/images/user_default.png";
 import {NavLink} from "react-router-dom";
-import {followAPI} from "../../api/api";
 
 
 const Users = (props) => {
@@ -36,31 +35,10 @@ const Users = (props) => {
                                     {user.followed === true
                                         ? <button
                                             disabled={props.isFollowingInProgress.some(userId => userId === user.id)}
-                                            onClick={() => {
-                                                props.toggleIsFollowingInProgress(true, user.id);
-                                                followAPI.unfollow(user.id)
-                                                    .then(isSuccessful => {
-                                                        if (isSuccessful) {
-                                                            props.unfollow( user.id);
-                                                        }
-
-                                                        props.toggleIsFollowingInProgress(false,user.id);
-                                                    });
-                                            }}>Unfollow</button>
+                                            onClick={() => props.unfollow(user.id)}>Unfollow</button>
                                         : <button
                                             disabled={props.isFollowingInProgress.some(userId => userId === user.id)}
-                                            onClick={() => {
-                                                props.toggleIsFollowingInProgress(true, user.id);
-                                                followAPI.follow(user.id)
-                                                    .then(isSuccessful => {
-                                                        if (isSuccessful) {
-                                                            props.follow(user.id);
-                                                        }
-
-                                                        props.toggleIsFollowingInProgress(false, user.id);
-                                                    });
-
-                                            }}>Follow</button>}
+                                            onClick={() => props.follow(user.id)}>Follow</button>}
                                 </div>
                             </span>
                             <span>

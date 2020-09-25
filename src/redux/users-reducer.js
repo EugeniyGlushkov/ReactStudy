@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 let FOLLOW = 'FOLLOW';
 let UNFOLLOW = 'UNFOLLOW';
 let SET_USERS = 'SET_USERS';
@@ -71,8 +73,8 @@ const usersReducer = (state = initalState, action) => {
     }
 };
 
-export const follow = (userId) => ({type: FOLLOW, userId: userId});
-export const unfollow = (userId) => ({type: UNFOLLOW, userId: userId});
+export const followSuccess = (userId) => ({type: FOLLOW, userId: userId});
+export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId: userId});
 export const setUsers = (users) => ({type: SET_USERS, users: users});
 export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, currentPage: pageNumber});
 export const setTotalUsersCount = (totalUsersCount) => ({
@@ -83,5 +85,36 @@ export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFe
 export const toggleIsFollowingInProgress = (isFetching, userId) => ({
     type: TOGGLE_IS_FOLLOWING_IN_PROGRESS, isFetching, userId
 });
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+    dispatch(setCurrentPage(currentPage));
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
+    });
+};
+export const follow = (userId) => (dispatch) => {
+    dispatch(toggleIsFollowingInProgress(true, userId));
+    usersAPI.follow(userId)
+        .then(isSuccessful => {
+            if (isSuccessful) {
+                dispatch(followSuccess(userId));
+            }
+
+            dispatch(toggleIsFollowingInProgress(false, userId));
+        });
+};
+export const unfollow = (userId) => (dispatch) => {
+    dispatch(toggleIsFollowingInProgress(true, userId));
+    usersAPI.unfollow(userId)
+        .then(isSuccessful => {
+            if (isSuccessful) {
+                dispatch(unfollowSuccess(userId));
+            }
+
+            dispatch(toggleIsFollowingInProgress(false, userId));
+        });
+};
 
 export default usersReducer;

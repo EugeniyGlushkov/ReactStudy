@@ -17,6 +17,16 @@ export const usersAPI = {
     getUsers(pageNumber = 1, pageSize = 10) {
         return instance.get(`users?page=${pageNumber}&count=${pageSize}`)
             .then(response => response.data);
+    },
+
+    follow(userId) {
+        return instanceWithApiKey.post(`follow/${userId}`)
+            .then(response => response.data.resultCode === 0);
+    },
+
+    unfollow(userId) {
+        return instanceWithApiKey.delete(`follow/${userId}`)
+            .then(response => response.data.resultCode === 0);
     }
 };
 
@@ -31,17 +41,5 @@ export const profileAPI = {
     getProfile(userId) {
         return instance.get(`profile/${userId}`)
             .then(response => response.data)
-    }
-};
-
-export const followAPI = {
-    follow(userId) {
-        return instanceWithApiKey.post(`follow/${userId}`)
-            .then(response => response.data.resultCode === 0);
-    },
-
-    unfollow(userId) {
-        return instanceWithApiKey.delete(`follow/${userId}`)
-            .then(response => response.data.resultCode === 0);
     }
 };
