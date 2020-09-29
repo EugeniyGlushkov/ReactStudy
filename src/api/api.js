@@ -27,19 +27,17 @@ export const usersAPI = {
     unfollow(userId) {
         return instanceWithApiKey.delete(`follow/${userId}`)
             .then(response => response.data.resultCode === 0);
+    },
+
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`)
+            .then(response => response.data)
     }
 };
 
 export const authAPI = {
-    getSelf() {
+    me() {
         return instance.get('auth/me')
             .then(response => response.data);
-    }
-};
-
-export const profileAPI = {
-    getProfile(userId) {
-        return instance.get(`profile/${userId}`)
-            .then(response => response.data)
     }
 };

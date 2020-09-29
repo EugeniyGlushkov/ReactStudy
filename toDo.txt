@@ -1,2 +1,4 @@
 FIX
 1. New posts to the top.
+2. Go to page 1 when users did mount.
+3. Create a mock-photo at the profile page if user hasn't got a photo.
